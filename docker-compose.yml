@@ -1,0 +1,17 @@
+version: "1.0"
+services:
+  mysql-service:
+    image: mysql:8.0
+    container_name: mysql-service
+    networks:
+      - spring-boot-mysql-network
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "adm123"
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: "cobranca"
+      MYSQL_USER: "adm"
+      MYSQL_PASSWORD: "adm123"
+networks:
+  spring-boot-mysql-network:
+    driver: bridge
