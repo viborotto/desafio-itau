@@ -13,6 +13,7 @@ public class ClienteCobranca {
     private Long id;
 
     // Campos relevantes para a cobranca do Cliente
+    private String cpf;
     private String nome;
     private String email;
     private String celular;
@@ -21,6 +22,14 @@ public class ClienteCobranca {
     @OneToMany(mappedBy = "cliente")
 //    @JsonIgnore
     private List<Cobranca> cobrancas;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public List<Cobranca> getCobrancas() {
         return cobrancas;

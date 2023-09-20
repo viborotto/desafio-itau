@@ -1,6 +1,7 @@
 package com.itau.cobranca.service;
 
 import com.itau.cobranca.exception.ClienteNotFoundException;
+import com.itau.cobranca.exception.CobrancaNotFoundException;
 import com.itau.cobranca.model.ClienteCobranca;
 import com.itau.cobranca.model.Cobranca;
 import com.itau.cobranca.repository.ClienteRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -28,6 +30,23 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public ClienteCobranca obterCliente(Long id) {
         return clienteRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Cobranca obterCobrancaClienteCpf(String cpf, Long cobranca_id) throws ClienteNotFoundException, CobrancaNotFoundException {
+        Optional<ClienteCobranca> clienteOptional = clienteRepository.findByCpf(cpf);
+
+        if (clienteOptional.isPresent()) {
+            Optional<Cobranca> cobrancaOptional = cobrancaRepository.findByIdAndClienteCpf(cobranca_id, cpf);
+
+            if (cobrancaOptional.isPresent()) {
+                return cobrancaOptional.get();
+            } else {
+                throw new CobrancaNotFoundException("Cobrança não encontrada para o ID: " + cobranca_id + " e CPF: " + cpf);
+            }
+        } else {
+            throw new ClienteNotFoundException("Cliente não encontrado para o CPF: " + cpf);
+        }
     }
 
     @Override
