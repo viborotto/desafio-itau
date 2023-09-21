@@ -61,3 +61,6 @@ Modernizar legado dos sistemas de Cobrança e Renegociação.
 - - [ ] Funcionalidades de Renegociação (Agrupamento da Dívida e Simulação de Pagamento, Oferta
 de Produtos, Efetivação Acordo, entre outros);
 - - [ ] Funcionalidades de Pagamento (Emissão e Pagamento de Boletos, Débito em Conta, outros). 
+
+_______
+
