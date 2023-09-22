@@ -21,7 +21,14 @@ public class Cobranca {
     @ManyToOne // Muitas cobranças podem pertencer a um cliente
     @JoinColumn(name = "cliente_id") // Nome da coluna que representa o relacionamento
     @JsonIgnore
-    private ClienteCobranca cliente;
+    private Cliente cliente;
+
+    public Cobranca(long l, double v) {
+    }
+
+    public Cobranca() {
+
+    }
 
 
     public Date getDataVencimento() {
@@ -32,11 +39,11 @@ public class Cobranca {
         this.dataVencimento = dataVencimento;
     }
 
-    public ClienteCobranca getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(ClienteCobranca cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

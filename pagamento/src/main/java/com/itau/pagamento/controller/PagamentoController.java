@@ -1,6 +1,7 @@
 package com.itau.pagamento.controller;
 
 import com.itau.pagamento.exceptions.CobrancaNotFoundException;
+import com.itau.pagamento.model.Cliente;
 import com.itau.pagamento.model.Cobranca;
 import com.itau.pagamento.model.CobrancaDTO;
 import com.itau.pagamento.service.CobrancaService;
@@ -41,10 +42,9 @@ public class PagamentoController {
     }
 
     @PostMapping("/clientes/{cliente_cpf}/cobrancas/{cobranca_id}/pagar-debito")
-    public ResponseEntity<CobrancaDTO> pagarDebito(@PathVariable String cliente_cpf, @PathVariable Long cobranca_id) {
-        CobrancaDTO callResponse = pagamentoService.callChargeMicroservice(cliente_cpf, cobranca_id);
-        // realizar o pagamento subtraindo o valor do saldo da conta do cliente
-        // e chamar o endpoint de delete
-        return ResponseEntity.ok(callResponse);
+    public ResponseEntity<Cliente> pagarDebito(@PathVariable String cliente_cpf, @PathVariable Long cobranca_id) {
+        Cliente clienteDebitado = pagamentoService.callChargeMicroservice(cliente_cpf, cobranca_id);
+
+        return ResponseEntity.ok(clienteDebitado);
     }
 }

@@ -1,15 +1,13 @@
 package com.itau.cobranca.service;
 
 import com.itau.cobranca.exception.ClienteNotFoundException;
-import com.itau.cobranca.model.ClienteCobranca;
+import com.itau.cobranca.model.Cliente;
 import com.itau.cobranca.model.Cobranca;
 import com.itau.cobranca.repository.ClienteRepository;
 import com.itau.cobranca.repository.CobrancaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.sns.SnsClient;
 
 import java.util.List;
 
@@ -37,10 +35,10 @@ public class CobrancaServiceImpl implements CobrancaService {
     @Override
     public Cobranca criarCobranca(Cobranca cobranca, Long clienteId) throws ClienteNotFoundException {
         // Verifica se o cliente existe
-        ClienteCobranca cliente = clienteRepository.findById(clienteId)
+        Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado para o ID: " + clienteId));
 
-        cobranca.setCliente(cliente); // Associa a cobrança ao cliente
+        cobranca.setCliente(cliente);
 //        canaisCobranca.cobrancaEmail(cobranca);
 //        canaisCobranca.cobrancaSNS(cobranca);
         return cobrancaRepository.save(cobranca);

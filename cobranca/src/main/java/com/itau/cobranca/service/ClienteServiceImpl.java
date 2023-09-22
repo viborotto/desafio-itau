@@ -2,7 +2,7 @@ package com.itau.cobranca.service;
 
 import com.itau.cobranca.exception.ClienteNotFoundException;
 import com.itau.cobranca.exception.CobrancaNotFoundException;
-import com.itau.cobranca.model.ClienteCobranca;
+import com.itau.cobranca.model.Cliente;
 import com.itau.cobranca.model.Cobranca;
 import com.itau.cobranca.repository.ClienteRepository;
 import com.itau.cobranca.repository.CobrancaRepository;
@@ -23,18 +23,18 @@ public class ClienteServiceImpl implements ClienteService {
     private ClienteRepository clienteRepository;
 
     @Override
-    public List<ClienteCobranca> listarClientes() {
+    public List<Cliente> listarClientes() {
         return clienteRepository.findAll();
     }
 
     @Override
-    public ClienteCobranca obterCliente(Long id) {
+    public Cliente obterCliente(Long id) {
         return clienteRepository.findById(id).orElse(null);
     }
 
     @Override
     public Cobranca obterCobrancaClienteCpf(String cpf, Long cobranca_id) throws ClienteNotFoundException, CobrancaNotFoundException {
-        Optional<ClienteCobranca> clienteOptional = clienteRepository.findByCpf(cpf);
+        Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
 
         if (clienteOptional.isPresent()) {
             Optional<Cobranca> cobrancaOptional = cobrancaRepository.findByIdAndClienteCpf(cobranca_id, cpf);
@@ -50,7 +50,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public ClienteCobranca criarCliente(ClienteCobranca clienteCobranca) {
+    public Cliente criarCliente(Cliente clienteCobranca) {
         clienteCobranca.setCobrancas(new ArrayList<>());
         return clienteRepository.save(clienteCobranca);
     }

@@ -2,10 +2,9 @@ package com.itau.cobranca.controller;
 
 import com.itau.cobranca.exception.ClienteNotFoundException;
 import com.itau.cobranca.exception.CobrancaNotFoundException;
-import com.itau.cobranca.model.ClienteCobranca;
+import com.itau.cobranca.model.Cliente;
 import com.itau.cobranca.model.Cobranca;
 import com.itau.cobranca.service.ClienteService;
-import com.itau.cobranca.service.CobrancaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +18,12 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping
-    public List<ClienteCobranca> listarCobrancas() {
+    public List<Cliente> listarCobrancas() {
         return clienteService.listarClientes();
     }
 
     @GetMapping("/{id}")
-    public ClienteCobranca obterCobranca(@PathVariable Long id) {
+    public Cliente obterCobranca(@PathVariable Long id) {
         return clienteService.obterCliente(id);
     }
 
@@ -35,7 +34,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ClienteCobranca criarCobranca(@RequestBody ClienteCobranca clienteCobranca) throws ClienteNotFoundException {
-        return clienteService.criarCliente(clienteCobranca);
+    public Cliente criarCliente(@RequestBody Cliente cliente) throws ClienteNotFoundException {
+        return clienteService.criarCliente(cliente);
     }
 }

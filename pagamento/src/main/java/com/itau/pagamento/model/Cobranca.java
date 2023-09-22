@@ -23,13 +23,13 @@ public class Cobranca {
     @ManyToOne // Muitas cobranças podem pertencer a um cliente
     @JoinColumn(name = "cliente_id") // Nome da coluna que representa o relacionamento
     @JsonIgnore
-    private ClientePagamento cliente;
+    private Cliente cliente;
 
-    public ClientePagamento getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(ClientePagamento cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

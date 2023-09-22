@@ -1,6 +1,6 @@
-package com.itau.cobranca.repository;
+package com.itau.pagamento.repository;
 
-import com.itau.cobranca.model.Cliente;
+import com.itau.pagamento.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
@@ -8,4 +8,3 @@ import java.util.Optional;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Optional<Cliente> findByCpf(String cpf);
 }
-

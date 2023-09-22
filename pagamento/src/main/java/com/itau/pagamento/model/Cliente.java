@@ -1,18 +1,15 @@
-package com.itau.cobranca.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.itau.pagamento.model;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-public class ClienteCobranca {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Campos relevantes para a cobranca do Cliente
     private String cpf;
     private String nome;
     private String email;
