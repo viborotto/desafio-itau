@@ -19,9 +19,19 @@ public class ClienteCobranca {
     private String celular;
     private String endereco;
 
+    private Double saldo;
+
     @OneToMany(mappedBy = "cliente")
 //    @JsonIgnore
     private List<Cobranca> cobrancas;
+
+    public Double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
 
     public String getCpf() {
         return cpf;

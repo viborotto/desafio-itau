@@ -12,5 +12,7 @@ public interface CobrancaService {
     Cobranca obterCobranca(Long id);
 
     Cobranca criarCobranca(Cobranca cobranca, Long clienteId) throws ClienteNotFoundException;
+
+    void deleteCobrancaByClienteId(Long clienteId);
 }
 

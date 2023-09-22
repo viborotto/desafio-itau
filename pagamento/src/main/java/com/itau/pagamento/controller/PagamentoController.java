@@ -43,7 +43,8 @@ public class PagamentoController {
     @PostMapping("/clientes/{cliente_cpf}/cobrancas/{cobranca_id}/pagar-debito")
     public ResponseEntity<CobrancaDTO> pagarDebito(@PathVariable String cliente_cpf, @PathVariable Long cobranca_id) {
         CobrancaDTO callResponse = pagamentoService.callChargeMicroservice(cliente_cpf, cobranca_id);
-
+        // realizar o pagamento subtraindo o valor do saldo da conta do cliente
+        // e chamar o endpoint de delete
         return ResponseEntity.ok(callResponse);
     }
 }

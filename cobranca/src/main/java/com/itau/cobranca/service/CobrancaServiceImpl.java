@@ -5,6 +5,7 @@ import com.itau.cobranca.model.ClienteCobranca;
 import com.itau.cobranca.model.Cobranca;
 import com.itau.cobranca.repository.ClienteRepository;
 import com.itau.cobranca.repository.CobrancaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.regions.Region;
@@ -43,6 +44,12 @@ public class CobrancaServiceImpl implements CobrancaService {
 //        canaisCobranca.cobrancaEmail(cobranca);
 //        canaisCobranca.cobrancaSNS(cobranca);
         return cobrancaRepository.save(cobranca);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCobrancaByClienteId(Long clienteId) {
+        cobrancaRepository.deleteByClienteId(clienteId);
     }
 
 

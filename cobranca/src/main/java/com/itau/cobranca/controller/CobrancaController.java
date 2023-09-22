@@ -4,6 +4,7 @@ import com.itau.cobranca.exception.ClienteNotFoundException;
 import com.itau.cobranca.model.Cobranca;
 import com.itau.cobranca.service.CobrancaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +29,11 @@ public class CobrancaController {
     @PostMapping("/{clienteId}")
     public Cobranca criarCobranca(@RequestBody Cobranca cobranca, @PathVariable Long clienteId) throws ClienteNotFoundException {
         return cobrancaService.criarCobranca(cobranca, clienteId);
+    }
+
+    @DeleteMapping("/{clienteId}")
+    public ResponseEntity<String> deleteCobrancaByClienteId(@PathVariable Long clienteId) {
+        cobrancaService.deleteCobrancaByClienteId(clienteId);
+        return ResponseEntity.ok("Cobranca deleted successfully");
     }
 }

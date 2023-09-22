@@ -10,15 +10,10 @@ public class ClientePagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Campos relevantes para o pagamento do Cliente
     private String nome;
     private String cpf;
 
-    private Double saldo;
-
     @OneToMany(mappedBy = "cliente")
     private List<Cobranca> cobrancas;
-
-
 
 }

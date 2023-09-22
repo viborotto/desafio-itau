@@ -7,4 +7,6 @@ import java.util.Optional;
 @Repository
 public interface CobrancaRepository extends JpaRepository<Cobranca, Long> {
     Optional<Cobranca> findByIdAndClienteCpf(Long id, String cpf);
+
+    void deleteByClienteId(Long clienteId);
 }
